@@ -1,0 +1,47 @@
+---
+# tasks file for dev/empty_projects/python
+
+- name: check project destination
+  block:
+    - stat:
+        path: "{{ path }}" 
+      register: project_path
+
+    - fail:
+        msg: "A directory or file already exists at the specified path: '{{ path }}'"
+      when: project_path.stat.exists
+
+- name: establish project directory skeleton
+  file:
+    path: "{{ path }}/{{ item }}"
+    state: directory
+  with_items:
+    - ""
+    - "{{ project.name }}"
+    - "bin"
+    - "tests"
+  
+- name: establish project files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ path }}/{{ item.dest }}"
+  with_items:
+    - { src: setup.py, dest: setup.py  }
+    - { src: empty.py, dest: "{{ project.name }}/__init__.py" }
+    - { src: README.md, dest: README.md }
+
+- block:
+  - name: establish Python .gitignore
+    get_url:
+      url: "https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore"
+      dest: "{{ gitignore_path }}"
+
+  - name: ensure git exclusion of /bin folder
+    lineinfile:
+      line: "bin/"
+      path: "{{ gitignore_path }}"
+      state: present
+
+  vars:
+    gitignore_path: "{{ path }}/.gitignore"
+     
