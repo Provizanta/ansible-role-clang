@@ -1,0 +1,2 @@
+{%- set Python = 'python' if use_legacy else 'python3' -%}
+{{ Python }},{{ Python }}-pip,{{ Python }}-virtualenv
