@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Tibor Csoka
+
+  license: MIT
+
+  min_ansible_version: 2.6
+
+  platforms:
+  - name: all
+    versions:
+    - all
+
+  galaxy_tags: [python project empty]
+
+dependencies: []
