@@ -1,0 +1,24 @@
+---
+
+- name: ensure project path existence
+  file:
+    path: "{{ project['path'] }}"
+    state: directory
+  when:
+    - project is defined
+    - project['path'] is defined
+
+- name: establish license dependency
+  pip:
+    name: lice
+    state: present
+
+- name: create project license
+  shell: lice {{ license | replace('-','') | lower }} -p "{{ project['name'] }}" {% if 'owner' in project %}-o "{{ project['owner'] }}"{% endif %} > LICENSE
+  args:
+    chdir: "{{ project['path'] }}"
+  when:
+    - project is defined
+    - project['name'] is defined
+    - project['path'] is defined
+
