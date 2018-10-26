@@ -1,0 +1,21 @@
+---
+
+- block:
+  - name: establish ignore file
+    get_url:
+      url: "https://raw.githubusercontent.com/github/gitignore/master/{{ language }}.gitignore"
+      dest: "{{ ignore_file }}"
+
+  - name: extend ignore file with project label
+    shell: echo -e "\n## Project specific" >> {{ ignore_file }}
+    args:
+      executable: bash 
+
+  - name: ensure git exclusion for directories
+    lineinfile:
+      line: "{{ item }}"
+      path: "{{ ignore_file }}"
+      state: present
+    with_items: "{{ ignore }}"
+  vars:
+    ignore_file: "{{ path }}/.{{ scm_to_short[scm] }}ignore"
