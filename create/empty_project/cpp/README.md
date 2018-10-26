@@ -29,7 +29,7 @@ At least project name should be supplied.
 
     - hosts: localhost
       roles:
-         - role: dev/empty_projects/cpp
+         - role: dev/create/empty_project/cpp
            vars:
              path: "~/proj/system/"
              project:

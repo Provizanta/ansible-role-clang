@@ -41,7 +41,7 @@ At least project path and basic project details should be specified.
 
     - hosts: localhost
       roles:
-         - role: dev/empty_projects/python
+         - role: dev/create/empty_project/python
            vars:
              path: "~/proj/system/"
              python:

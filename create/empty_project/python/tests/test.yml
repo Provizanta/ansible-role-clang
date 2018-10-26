@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - dev/empty_projects/python
+    - dev/create/empty_project/python
