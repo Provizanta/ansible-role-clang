@@ -8,4 +8,4 @@
 
 ## Authors
 
-{{ project['owner'] }}
+{{ project['owner'] if 'owner' in project else '' }}

@@ -2,7 +2,7 @@
 
 - set_fact:
     project:
-      owner: "{{ project['owner'] | default(project['author']['name']) }}"
+      owner: "{{ project['owner'] if project['owner'] is defined else project['author']['name'] if project.get('author',{}).get('name',{}) else '' }}"
       path: "{{ path }}/{{ project['name'] | replace(' ', substitutes[' ']) | lower }}/"
 
 - name: establish project skeleton presence
