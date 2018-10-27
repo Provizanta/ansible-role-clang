@@ -1,12 +1,13 @@
 ---
 
-- name:
-  set_fact:
-    project_path: "{{ project['path'] }}/{{ project['name'] | replace(' ', substitutes[' ']) | lower }}/"
+- set_fact:
+    project:
+      owner: "{{ project['owner'] | default(project['author']['name']) }}"
+      path: "{{ path }}/{{ project['name'] | replace(' ', substitutes[' ']) | lower }}/"
 
-- name: ensure project skeleton presence
+- name: establish project skeleton presence
   file:
-    path: "{{ project_path }}/{{ item.dest }}"
+    path: "{{ project['path'] }}/{{ item.dest }}"
     state: directory
   when: item.when is not defined or item.when
   with_items:
@@ -20,29 +21,28 @@
     - { dest: "src" }
     - { dest: "test", when: "{{ 'test' in uses }}" }
 
-- name: add license
-  block:
-  - name: establish license dependency
-    pip:
-      name: lice
-      state: present
-
-  - name: create project license
-    shell: lice {{ project['license'] | replace('-','') | lower }} -p "{{ project['name'] }}" {% if 'owner' in project %}-o "{{ project['owner'] }}"{% endif %} > LICENSE.md
-    args:
-      chdir: "{{ project_path }}"
-
 - name: add project readme
   template:
-    src: "README"
-    dest: "{{ project_path }}/README.md"
+    src: "README.md"
+    dest: "{{ project['path'] }}/README.md"
+
+- name: add project license
+  import_role:
+    name: dev/create/license
+  vars:
+    license: "{{ project['license'] }}"
+  when:
+    - project['license'] is defined
 
 - name: add ignore file
   import_role:
-    name: tasks/dev/ignore_files
+    name: dev/create/ignore_file
   vars:
-    path: "{{ project_path }}"
+    path: "{{ project['path'] }}"
     language: "C++"
-    ignore: ["bin/", "build/", "lib/"]
+    ignore:
+      - "bin/"
+      - "build/"
+      - "lib/"
   when:
     - scm is defined

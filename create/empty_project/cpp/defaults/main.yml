@@ -1,16 +1,11 @@
 ---
 
 project:
-  name: "project"
-  owner: "Test Corp."
-  path: "~/"
   license: "MIT"
   platforms: []
 
 substitutes:
   " ": "-"
-
-scm: git
 
 uses:
   - cmake

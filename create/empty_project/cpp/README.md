@@ -15,7 +15,13 @@ Role Variables
     
     project:
       name: project name
+      description: project description
+      author:
+        name: author's full name
+        email: e-mail contact
       license: license, under which the project is licensed
+
+    scm: source control mechanism
 
 Dependencies
 ------------
@@ -34,7 +40,9 @@ At least project name should be supplied.
              path: "~/proj/system/"
              project:
                name: "Fantasy project name"
+               owner: "Fantasy Corp."
                license: "BSD-3"
+             scm: "git"
 
 License
 -------

@@ -27,7 +27,7 @@ At least project path and language should be supplied.
 
     - hosts: localhost
       roles:
-         - role: dev/create/ignore_files
+         - role: dev/create/ignore_file
            vars:
              path: "~/proj/system/"
              language: "Python"

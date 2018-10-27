@@ -22,12 +22,14 @@ Role Variables
       author:
         name: "Name Surname"
         email: "name@surname.com"
-      version: 0.1
       license: 'MIT'
+      version: 0.1
       classifiers:
         - 'Programming Language :: Python :: 3'
       keywords: []
       dependencies: []
+
+    scm: source control mechanism
 
 Dependencies
 ------------
