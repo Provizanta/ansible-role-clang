@@ -21,7 +21,7 @@
     - { dest: "src" }
     - { dest: "test", when: "{{ 'test' in uses }}" }
 
-- name: add project readme
+- name: establish project readme
   template:
     src: "README.md"
     dest: "{{ project['path'] }}/README.md"
@@ -30,9 +30,7 @@
   import_role:
     name: dev/create/license
   vars:
-    license: "{{ project['license'] }}"
-  when:
-    - project['license'] is defined
+    license: "{{ project['license'] | default('wtfpl') }}"
 
 - name: add ignore file
   import_role:

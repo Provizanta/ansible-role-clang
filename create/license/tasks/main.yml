@@ -11,12 +11,19 @@
 - name: establish license dependency
   pip:
     name: lice
-    state: present
+    state: latest
 
-- name: create project license
-  shell: lice {{ license | replace('-','') | lower }} -p "{{ project['name'] }}" {% if 'owner' in project %}-o "{{ project['owner'] }}"{% endif %} > LICENSE
-  args:
-    chdir: "{{ project['path'] }}"
+- block:
+    - name: create project license
+      shell: lice {{ license | replace('-','') | lower }} -p "{{ project['name'] }}" {% if 'owner' in project %}-o "{{ project['owner'] }}"{% endif %} >| LICENSE
+      args:
+        chdir: '/tmp/'
+      changed_when: no
+
+    - name: update project license
+      copy:
+        src: /tmp/LICENSE
+        dest: "{{ project['path'] }}"
   when:
     - project is defined
     - project['name'] is defined
