@@ -1,46 +1,48 @@
 ---
 
-- set_fact:
-    project:
-      owner: "{{ project['owner'] if project['owner'] is defined else project['author']['name'] if project.get('author',{}).get('name',{}) else '' }}"
-      path: "{{ path }}/{{ project['name'] | replace(' ', substitutes[' ']) | lower }}/"
+- name: establish updated facts
+  set_fact:
+    project: 
+     "{{ project | combine(
+         {
+           'owner': project['owner'] if project['owner'] is defined else project['author']['name'] if project.get('author',{}).get('name',{}) else '',
+           'normalized_name': project['name'] | replace(' ', substitutes[' ']) | lower,
+           'path': path + '/' + project['name'] | replace(' ', substitutes[' ']) | lower
+         }, recursive=True) }}"
 
-- name: establish project skeleton presence
+- name: establish project skeleton
   file:
     path: "{{ project['path'] }}/{{ item.dest }}"
     state: directory
-  when: item.when is not defined or item.when
+  when: item.use | default(True)
   with_items:
-    - { dest: "" }
-    - { dest: "bin" }
     - { dest: "build" }
-    - { dest: "cmake", when: "{{ 'cmake' in uses }}" }
-    - { dest: "doc" }
-    - { dest: "include" }
-    - { dest: "lib" }
+    - { dest: "include/{{ project['normalized_name'] }}" }
     - { dest: "src" }
-    - { dest: "test", when: "{{ 'test' in uses }}" }
+    - { dest: "doc" }
+    - { dest: "cmake", use: "{{ build == 'cmake' }}" }
+
+- import_tasks: tests.yml
+  when: test is defined
 
 - name: establish project readme
   template:
     src: "README.md"
     dest: "{{ project['path'] }}/README.md"
 
-- name: add project license
+- name: establish project license
   import_role:
     name: dev/create/license
   vars:
     license: "{{ project['license'] | default('wtfpl') }}"
 
-- name: add ignore file
+- name: establish ignore file
   import_role:
     name: dev/create/ignore_file
   vars:
     path: "{{ project['path'] }}"
     language: "C++"
     ignore:
-      - "bin/"
       - "build/"
-      - "lib/"
   when:
     - scm is defined

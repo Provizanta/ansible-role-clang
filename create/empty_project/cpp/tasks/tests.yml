@@ -1,0 +1,17 @@
+---
+
+- name: establish integration test directory
+  file:
+    path: "{{ project['path'] }}/test"
+    state: directory
+  when: test.integration is defined
+
+- name: establish unittest frameworks
+  git:
+    repo: "{{ frameworks[item]['repo'] }}"
+    dest: "{{ project['path'] }}/include/{{ item }}"
+    update: no 
+  when:
+    - item in frameworks
+    - "'repo' in frameworks[item]"
+  with_items: "{{ test['unittest'] | default([]) }}"

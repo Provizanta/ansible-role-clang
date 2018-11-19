@@ -4,9 +4,11 @@ project:
   license: "MIT"
   platforms: []
 
-substitutes:
-  " ": "-"
+build: cmake
+    
+test:
+  integration: true
+  unittest:
+    Catch2
 
-uses:
-  - cmake
-  - test
+platforms: []
