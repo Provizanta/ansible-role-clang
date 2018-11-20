@@ -9,6 +9,7 @@
            'normalized_name': project['name'] | replace(' ', substitutes[' ']) | lower,
            'path': path + '/' + project['name'] | replace(' ', substitutes[' ']) | lower
          }, recursive=True) }}"
+    build: "{{ build | lower if build is defined else None }}"
 
 - name: establish project skeleton
   file:
@@ -20,10 +21,12 @@
     - { dest: "include/{{ project['normalized_name'] }}" }
     - { dest: "src" }
     - { dest: "doc" }
-    - { dest: "cmake", use: "{{ build == 'cmake' }}" }
 
 - import_tasks: tests.yml
   when: test is defined
+
+- import_tasks: build/cmake.yml
+  when: build == 'cmake'
 
 - name: establish project readme
   template:
@@ -42,7 +45,6 @@
   vars:
     path: "{{ project['path'] }}"
     language: "C++"
-    ignore:
-      - "build/"
+    ignore: "{{ lookup('template', 'ignore_list.j2') }}"
   when:
     - scm is defined

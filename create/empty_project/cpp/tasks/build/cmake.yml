@@ -1,0 +1,14 @@
+---
+
+- name: establish cmake directory
+  file:
+    path: "{{ project['path'] }}/cmake"
+    state: directory
+
+- name: establish CMakeLists.txt files
+  template:
+    src: "{{ item }}"
+    dest: "{{ item | dirname | regex_replace('.*templates/build/cmake', project['path']) }}"
+  with_fileglob:
+    - "templates/build/cmake/*"
+

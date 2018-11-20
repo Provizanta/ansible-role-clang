@@ -2,13 +2,8 @@
 
 project:
   license: "MIT"
-  platforms: []
-
-build: cmake
+  languages:
+    - C
+    - CXX
     
-test:
-  integration: true
-  unittest:
-    Catch2
-
 platforms: []
