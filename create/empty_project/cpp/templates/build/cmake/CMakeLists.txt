@@ -1,17 +1,17 @@
-cmake_minimum_required(VERSION 3.1...3.12)
+{{- set cmake_version = 3.10 -}}
+{{- set cmake_highest_version = 3.12 -}}
+cmake_minimum_required(VERSION {{ cmake_version if cmake_version < 3.12 else cmake_version }} FATAL_ERROR)
 
-if(${CMAKE_VERSION} VERSION_LESS 3.12)
+if(${CMAKE_VERSION} VERSION_LESS {{ CMAKE_VERSION }})
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
-{% if ansible_os_family == 'Windows' %}
 else()
     # a bug in MSVC server mode - this line should be implicit, 2018-11-20
     cmake_policy(VERSION 3.12)
-{% endif %}
 endif()
 
 project({{ project['name'] }}
         VERSION {{ project['version'] | default('0.1') }}
-        DESCRIPTION "{{ project['description'] }}"
+        DESCRIPTION "{{ project['description'] | default('Project description should go here') }}"
         LANGUAGES "{{ project['languages'] | join(' ') }}")
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
