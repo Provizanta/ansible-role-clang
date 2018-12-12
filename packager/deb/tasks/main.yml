@@ -1,0 +1,20 @@
+---
+
+- name: establish dh tools
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - dh-make
+    - dh-systemd
+    - safe-rm
+    - quilt
+
+- name: establish python dependencies
+  package:
+    name: "{{ item }}"
+    state: latest     
+  with_items:
+    - python3-setuptools
+  when:
+    - "'python' in languages"
