@@ -1,1 +1,1 @@
-#!/usr/bin/env python{{ '3' if python.version >= '3' }}
+#!/usr/bin/env python{{ '3' if python.version | int >= 3 }}
