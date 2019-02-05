@@ -1,5 +1,0 @@
-{%- set ignore = ['build/*'] -%}
-{%- if build == 'cmake' -%}
-{{- ignore.append('cmake/*') -}}
-{%- endif -%}
-{{ ignore }}

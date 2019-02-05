@@ -1,8 +1,0 @@
-substitutes:
-  " ": "-"
-
-frameworks:
-  catch2:
-    repo: "https://github.com/catchorg/Catch2.git"
-  googletest:
-    repo: "https://github.com/google/googletest.git"

@@ -1,5 +1,0 @@
----
-
-scm_to_short:
-  git: git
-  mercurial: hg
