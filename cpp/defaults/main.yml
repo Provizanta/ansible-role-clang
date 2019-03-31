@@ -1,5 +1,5 @@
 ---
 
-compilers:
-  gcc:
-    last_stable: yes
+versions: []
+
+tools: basic

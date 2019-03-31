@@ -1,0 +1,28 @@
+---
+
+- import_vars: packages.yml
+
+- name: establish basic packages
+  become: yes
+  package:
+    name: "{{ basic_packages }}"
+    state: present
+
+- name: establish advanced packages
+  when: 'tools == "all"'
+  become: yes
+  package:
+    name: "{{ advanced_packages }}"
+    state: present
+
+- name: update alternatives
+  when:
+    - versions is defined
+    - versions | length > 0
+  become: yes
+  alternatives:
+    name: clang
+    path: /usr/bin/clang-{{ item }}
+    priority: 50 - {{ item | int }}
+    link: /usr/bin/clang
+

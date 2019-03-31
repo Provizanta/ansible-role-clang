@@ -1,0 +1,27 @@
+---
+
+basic_packages:
+  - clang-{{ version }} 
+  - lldb-{{ version }}
+  - lld-{{ version }}
+
+advanced_packages:
+  - libllvm-{{ version }}-ocaml-dev
+  - libllvm{{ version }}
+  - llvm-{{ version }}
+  - llvm-{{ version }}-dev
+  - llvm-{{ version }}-doc
+  - llvm-{{ version }}-examples
+  - llvm-{{ version }}-runtime
+  - clang-tools-{{ version }}
+  - clang-{{ version }}-doc
+  - libclang-common-{{ version }}-dev
+  - libclang-{{ version }}-dev
+  - libclang1-{{ version }}
+  - clang-format-{{ version }}
+  - python-clang-{{ version }}
+  - libfuzzer-{{ version }}-dev
+  - libc++-{{ version }}-dev
+  - libc++abi-{{ version }}-dev
+  - libomp-{{ version }}-dev 
+

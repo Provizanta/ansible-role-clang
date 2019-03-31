@@ -1,0 +1,19 @@
+---
+
+- name: ensure repo key presence
+  become: yes
+  apt_key:
+    url: https://apt.llvm.org/llvm-snapshot.gpg.key
+    state: present
+
+- name: ensure repo presence
+  when:
+    - versions is defined
+    - versions | length > 0
+  become: yes
+  template:
+    src: clang-debian-repo.j2
+    dest: "/etc/apt/sources.list.d/clang{{ item }}-stable"
+  loop: "{{ versions }}"
+  notify: update cache Debian
+

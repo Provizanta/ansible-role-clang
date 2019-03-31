@@ -1,7 +1,7 @@
-C++
+Clang
 =========
 
-Install C++ environment.
+Install Clang LLVM compiler tools.
 
 Requirements
 ------------
@@ -11,13 +11,8 @@ None
 Role Variables
 --------------
 
-compilers:
-  gcc:
-    last_stable: install also last stable version
-    versions: list of version to install
-  clang:
-    last_stable: install also last stable version
-    versions: list of version to install
+    versions: <list of versions to install>
+    tools: <all/basic>  
 
 Dependencies
 ------------
@@ -30,12 +25,10 @@ Example Playbook
     - hosts: localhost
       roles: dev/cpp
       vars:
-        compilers:
-          gcc:
-            last_stable: yes
-            versions:
-              - 7
-              - 8
+        versions:
+          - 7
+          - 8
+        tools: basic
 
 License
 -------
