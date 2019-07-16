@@ -1,6 +1,6 @@
 ---
 
 - name: update cache Debian
-  become: yes
+  become: true
   apt:
-    update_cache: yes
+    update_cache: true

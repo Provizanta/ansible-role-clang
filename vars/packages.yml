@@ -1,7 +1,7 @@
 ---
 
 basic_packages:
-  - clang-{{ version }} 
+  - clang-{{ version }}
   - lldb-{{ version }}
   - lld-{{ version }}
 
@@ -23,5 +23,4 @@ advanced_packages:
   - libfuzzer-{{ version }}-dev
   - libc++-{{ version }}-dev
   - libc++abi-{{ version }}-dev
-  - libomp-{{ version }}-dev 
-
+  - libomp-{{ version }}-dev

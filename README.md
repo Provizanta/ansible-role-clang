@@ -1,7 +1,7 @@
-Clang
+Ansible role: clang
 =========
 
-Install Clang LLVM compiler tools.
+Install Clang LLVM compiler & tools for repo.
 
 Requirements
 ------------
@@ -11,8 +11,11 @@ None
 Role Variables
 --------------
 
-    versions: <list of versions to install>
-    tools: <all/basic>  
+These variables are defined in defaults/main.yml
+
+    versions: []    # list, clang version
+
+    tools: false    # bool, install all clang tools
 
 Dependencies
 ------------
@@ -23,12 +26,12 @@ Example Playbook
 ----------------
 
     - hosts: localhost
-      roles: dev/cpp
-      vars:
-        versions:
-          - 7
-          - 8
-        tools: basic
+      roles:
+        - role: clang
+          vars:
+            versions:
+              - 7
+            tools: true
 
 License
 -------
@@ -38,4 +41,4 @@ MIT
 Author Information
 ------------------
 
-Tibor Csoka
+Tibor Csóka

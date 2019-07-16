@@ -1,10 +1,11 @@
 ---
 
 - name: load prerequisite tasks
-  # include_tasks: "{{ lookup('first_found', params, errors='ignore') }}"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
   include_tasks: "{{ item }}"
-  with_first_found:
-    - files:
+  vars:
+    params:
+      files:
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
@@ -13,7 +14,7 @@
         - '{{ role_path }}/tasks/platform/'
       skip: true
 
-- include_tasks: clang_version.yml
+- include_tasks: clang.yml
   loop: "{{ versions }}"
   loop_control:
     loop_var: version

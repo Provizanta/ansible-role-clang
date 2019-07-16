@@ -1,0 +1,27 @@
+---
+
+galaxy_info:
+  role_name: clang
+  author: Tibor Csóka
+  description: |
+    "Establish clang along with clang tools using official repositories."
+  company: ""
+
+  license: MIT
+
+  min_ansible_version: 2.7.1
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - cosmic
+    - name: Debian
+      versions:
+        - buster
+
+  galaxy_tags:
+    - logstash
+    - elk
+
+dependencies: []
