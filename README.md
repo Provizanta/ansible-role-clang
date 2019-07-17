@@ -1,6 +1,8 @@
 Ansible role: clang
 =========
 
+[![Build Status](https://travis-ci.com/Provizanta/ansible-role-clang.svg?branch=master)](https://travis-ci.com/Provizanta/ansible-role-clang)
+
 Install Clang LLVM compiler & tools for repo.
 
 Requirements
