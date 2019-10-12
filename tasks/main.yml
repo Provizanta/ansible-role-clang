@@ -15,6 +15,6 @@
       skip: true
 
 - include_tasks: clang.yml
-  loop: "{{ versions }}"
+  loop: "{{ clang_versions }}"
   loop_control:
     loop_var: version

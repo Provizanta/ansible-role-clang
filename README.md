@@ -13,11 +13,11 @@ None
 Role Variables
 --------------
 
-These variables are defined in defaults/main.yml
+These variables are defined in [defaults/main.yml](./defaults/main.yml):
 
-    versions: []    # list, clang version
+    clang_versions: []    # list, clang version
 
-    tools: false    # bool, install all clang tools
+    clang_install_tools: false      # bool, install all clang tools
 
 Dependencies
 ------------
@@ -31,9 +31,9 @@ Example Playbook
       roles:
         - role: clang
           vars:
-            versions:
+            clang_versions:
               - 7
-            tools: true
+            clang_install_tools: true
 
 License
 -------

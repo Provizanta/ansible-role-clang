@@ -5,6 +5,6 @@
   roles:
     - role: clang
       vars:
-        versions:
+        clang_versions:
           - 7
-        tools: true
+        clang_install_tools: true

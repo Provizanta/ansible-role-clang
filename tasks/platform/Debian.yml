@@ -1,6 +1,7 @@
 ---
 
 - name: establish apt_key dependency
+  become: true
   apt:
     name: gpg-agent
     state: present
@@ -17,7 +18,7 @@
     repo: "deb http://apt.llvm.org/{{ ansible_distribution_release | lower }}/ llvm-toolchain-{{ ansible_distribution_release | lower }}-{{ item }} main"    # noqa 204
     state: present
     filename: clang{{ item }}-stable
-  loop: "{{ versions }}"
+  loop: "{{ clang_versions }}"
 
 - name: ensure src repo presence
   become: true
@@ -25,4 +26,4 @@
     repo: "deb-src http://apt.llvm.org/{{ ansible_distribution_release | lower }}/ llvm-toolchain-{{ ansible_distribution_release | lower }}-{{ item }} main"    # noqa 204
     state: present
     filename: clang{{ item }}-stable
-  loop: "{{ versions }}"
+  loop: "{{ clang_versions }}"

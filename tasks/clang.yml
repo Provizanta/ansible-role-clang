@@ -9,8 +9,8 @@
     name: "{{ basic_packages }}"
     state: present
 
-- name: establish tools
-  when: tools | bool
+- name: establish clang tools
+  when: clang_install_tools | bool
   become: true
   package:
     name: "{{ advanced_packages }}"
