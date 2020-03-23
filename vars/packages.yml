@@ -20,7 +20,7 @@ advanced_packages:
   - libclang-common-{{ version }}-dev
   - libclang-{{ version }}-dev
   - libclang1-{{ version }}
-  - python-clang-{{ version }}
+  - python*-clang-{{ version }}
   - libfuzzer-{{ version }}-dev
   - libc++-{{ version }}-dev
   - libc++abi-{{ version }}-dev
