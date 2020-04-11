@@ -19,7 +19,11 @@
 - name: update alternatives
   become: true
   alternatives:
-    name: clang
-    path: /usr/bin/clang-{{ version }}
+    name: "{{ item }}"
+    path: /usr/bin/{{ item }}-{{ version }}
     priority: "{{ 50 + (version | int) }}"
-    link: /usr/bin/clang
+    link: /usr/bin/{{ item }}
+  loop:
+    - clang
+    - clang-format
+    - clang-tidy
