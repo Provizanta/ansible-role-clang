@@ -27,3 +27,4 @@
     - clang
     - clang-format
     - clang-tidy
+    - lld
