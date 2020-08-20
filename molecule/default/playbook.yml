@@ -8,8 +8,8 @@
       apt:
         update_cache: true
   roles:
-    - role: clang
+    - role: ansible-role-clang
       vars:
         clang_versions:
-          - 7
+          - 10
         clang_install_tools: true
