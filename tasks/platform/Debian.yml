@@ -15,19 +15,19 @@
 - name: ensure repo presence
   become: true
   apt_repository:
-    repo: "deb http://apt.llvm.org/{{ ansible_distribution_release | lower }}/ llvm-toolchain-{{ ansible_distribution_release | lower }}-{{ v }} main"    # noqa 204
+    repo: "deb http://apt.llvm.org/{{ ansible_distribution_release | lower }}/ llvm-toolchain-{{ ansible_distribution_release | lower }}-{{ repo_item }} main"    # noqa 204
     state: present
-    filename: clang{{ v }}-stable
+    filename: clang{{ repo_item }}-stable
   loop: "{{ clang_versions }}"
   loop_control:
-    loop_var: v
+    loop_var: repo_item
 
 - name: ensure src repo presence
   become: true
   apt_repository:
-    repo: "deb-src http://apt.llvm.org/{{ ansible_distribution_release | lower }}/ llvm-toolchain-{{ ansible_distribution_release | lower }}-{{ v }} main"    # noqa 204
+    repo: "deb-src http://apt.llvm.org/{{ ansible_distribution_release | lower }}/ llvm-toolchain-{{ ansible_distribution_release | lower }}-{{ src_repo_item }} main"    # noqa 204
     state: present
-    filename: clang{{ v }}-stable
+    filename: clang{{ src_repo_item }}-stable
   loop: "{{ clang_versions }}"
   loop_control:
-    loop_var: v
+    loop_var: src_repo_item
