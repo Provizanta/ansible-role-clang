@@ -16,6 +16,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        scenario:
+          - default
+          - legacy
         distro:
           - ubuntu2004
           - ubuntu1804
@@ -29,6 +32,7 @@ jobs:
       - name: run molecule
         uses: robertdebock/molecule-action@2.6.1
         env:
+          scenario: ${{ matrix.scenario }}
           MOLECULE_DISTRO: ${{ matrix.distro }}
 
   deploy:
