@@ -1,5 +1,5 @@
 ---
 
-clang_versions: []    # list, clang versions
+clang_version: 10               # int, clang versions
 
-clang_install_tools: false          # bool, install all clang tools
+clang_install_tools: false      # bool, install all clang tools

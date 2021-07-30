@@ -1,27 +1,27 @@
 ---
 
 basic_packages:
-  - clang-{{ version }}
-  - lldb-{{ version }}
-  - lld-{{ version }}
+  - clang-{{ clang_version }}
+  - lldb-{{ clang_version }}
+  - lld-{{ clang_version }}
 
 advanced_packages:
-  - libllvm-{{ version }}-ocaml-dev
-  - libllvm{{ version }}
-  - llvm-{{ version }}
-  - llvm-{{ version }}-dev
-  - llvm-{{ version }}-doc
-  - llvm-{{ version }}-examples
-  - llvm-{{ version }}-runtime
-  - clang-tools-{{ version }}
-  - clang-format-{{ version }}
-  - clang-tidy-{{ version }}
-  - clang-{{ version }}-doc
-  - libclang-common-{{ version }}-dev
-  - libclang-{{ version }}-dev
-  - libclang1-{{ version }}
-  - python*-clang-{{ version }}
-  - libfuzzer-{{ version }}-dev
-  - libc++-{{ version }}-dev
-  - libc++abi-{{ version }}-dev
-  - libomp-{{ version }}-dev
+  - libllvm-{{ clang_version }}-ocaml-dev
+  - libllvm{{ clang_version }}
+  - llvm-{{ clang_version }}
+  - llvm-{{ clang_version }}-dev
+  - llvm-{{ clang_version }}-doc
+  - llvm-{{ clang_version }}-examples
+  - llvm-{{ clang_version }}-runtime
+  - clang-tools-{{ clang_version }}
+  - clang-format-{{ clang_version }}
+  - clang-tidy-{{ clang_version }}
+  - clang-{{ clang_version }}-doc
+  - libclang-common-{{ clang_version }}-dev
+  - libclang-{{ clang_version }}-dev
+  - libclang1-{{ clang_version }}
+  - python*-clang-{{ clang_version }}
+  - libfuzzer-{{ clang_version }}-dev
+  - libc++-{{ clang_version }}-dev
+  - libc++abi-{{ clang_version }}-dev
+  - libomp-{{ clang_version }}-dev

@@ -10,6 +10,5 @@
   roles:
     - role: ansible-role-clang
       vars:
-        clang_versions:
-          - 10
+        clang_version: 10
         clang_install_tools: true
