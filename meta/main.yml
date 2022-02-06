@@ -2,6 +2,7 @@
 
 galaxy_info:
   role_name: clang
+  namespace: provizanta
   author: Tibor Csóka
   description: |
     "Establish clang along with clang tools using official repositories."
