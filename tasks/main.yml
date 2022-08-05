@@ -41,4 +41,5 @@
     - clang
     - clang-format
     - clang-tidy
+    - clangd
     - lld
