@@ -17,6 +17,7 @@ advanced_packages:
   - clang-format-{{ clang_version }}
   - clang-tidy-{{ clang_version }}
   - clang-{{ clang_version }}-doc
+  - clangd-{{ clang_version }}
   - libclang-common-{{ clang_version }}-dev
   - libclang-{{ clang_version }}-dev
   - libclang1-{{ clang_version }}
